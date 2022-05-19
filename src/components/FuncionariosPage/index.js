@@ -9,7 +9,7 @@ import {
   Description,
   Input,
 } from "./style";
-import exit from "../../assets/exit.png";
+import FuncionarioContext from "../../contexts/FuncionarioContext";
 import TokenContext from "../../contexts/TokenContext";
 import * as api from "../../services/api";
 import { FcPlus } from "react-icons/fc";
@@ -22,6 +22,7 @@ import ObraContext from "../../contexts/ObraContext";
 
 export default function FuncionariosPage() {
   const { token, setToken } = useContext(TokenContext);
+  const { funcionario, setFuncionario } = useContext(FuncionarioContext);
   const [page, setPage] = useState();
   const [funcionarios, setFuncionarios] = useState([]);
   const [disabledButton, setDisabledButton] = useState(false);
