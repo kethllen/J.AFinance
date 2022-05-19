@@ -8,16 +8,19 @@ import {
   Linha,
   Description,
   Input,
+  Valor,
+  Saldo,
 } from "./style";
 import exit from "../../assets/exit.png";
 import TokenContext from "../../contexts/TokenContext";
 import * as api from "../../services/api";
 import { FcPlus } from "react-icons/fc";
-import { FcHome } from "react-icons/fc";
+import { GiMoneyStack } from "react-icons/gi";
 import Swal from "sweetalert2";
 import loadImage from "../../assets/authLoad.svg";
-import { BiHome } from "react-icons/bi";
+import { RiArrowGoBackFill } from "react-icons/ri";
 import ObraContext from "../../contexts/ObraContext";
+import dayjs from "dayjs";
 
 const maskOnlyNumbers = (value) => {
   return (Number(value.replace(/\D/g, "")) / 100).toLocaleString("pt-BR", {
@@ -26,26 +29,28 @@ const maskOnlyNumbers = (value) => {
   });
 };
 
-export default function ObrasPage() {
+export default function EntradasPage() {
   const { token, setToken } = useContext(TokenContext);
   const { obraContext, setObraContext } = useContext(ObraContext);
   const [page, setPage] = useState();
-  const [obras, setObras] = useState([]);
+  const [entradas, setEntradas] = useState([]);
   const [valor, setValor] = useState([]);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorData, setErrorData] = useState();
+  const date = dayjs().format("DD-MM-YYYY");
+  let total = 0;
   const [formData, setFormData] = useState({
-    name: "",
+    obraId: parseInt(obraContext.id),
+    data: date,
     valor: "",
   });
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const promise = await api.obrasGet(token);
-    setObras(promise);
+    const promise = await api.entradasGet(token, obraContext.id);
+    setEntradas(promise);
   }, [page]);
   if (token === "") return;
-  console.log(obras);
 
   function handleInput(e) {
     if (e.target.name == "valor") {
@@ -56,20 +61,18 @@ export default function ObrasPage() {
     }
   }
 
-  async function handleObra(e) {
+  async function handleEntrada(e) {
     e.preventDefault();
     setDisabledButton(true);
     setErrorData({ ...formData });
     setTimeout(() => setErrorData(), 3500);
 
-    const imageNotEmpty = formData.valor !== "";
-    const nameNotEmpty = formData.name !== "";
-    const promise = await api.obrasPost(token, formData);
-    if (promise === 409) {
+    const promise = await api.entradasPost(token, formData);
+    if (promise === 401) {
       return Swal.fire({
         icon: "error",
         title: "Ops...",
-        text: "Este nome de obra ja está cadastrado!",
+        text: "Este nome de obra não está cadastrado!",
       });
     } else if (promise === 422) {
       return Swal.fire({
@@ -83,55 +86,62 @@ export default function ObrasPage() {
     }
     setPage("");
   }
+  entradas.map((n) => (total += n.valor));
   return (
     <Container>
       {!page ? (
         <>
           <Title>
-            <h1>Obras</h1>
-            <img
-              src={exit}
-              onClick={() => {
-                localStorage.setItem("token", "");
-                setToken("");
-                navigate("/");
-              }}
-            ></img>
+            <h1>Entradas de {obraContext.name}</h1>
+            <RiArrowGoBackFill
+              size={28}
+              color={"#ffffff"}
+              onClick={() => navigate("/obras/services")}
+            />
           </Title>
           <Extrat>
-            {!obras ? (
+            {!entradas ? (
               <h1>
-                Não há registros de<br></br>obras
+                Não há registros de<br></br>entradas para esta obra!
               </h1>
             ) : (
-              obras.map((n) => (
+              entradas.map((n) => (
                 <Linha>
-                  <Description
-                    onClick={() => {
-                      setObraContext({ id: n.id, name: n.name });
-                      navigate("/obras/services");
-                    }}
-                  >
-                    <FcHome size={30} />
-                    <span>{n.name}</span>
+                  <Description>
+                    <GiMoneyStack size={30} color={"#32CD32"} />
+                    <p className="data">{n.data}</p>
                   </Description>
+
+                  <Valor color={"entrada"}>{(n.valor / 100).toFixed(2)}</Valor>
                 </Linha>
               ))
             )}
-            <Incluir onClick={() => setPage("inserir")}>
-              <div>
-                <FcPlus size={40} />
-              </div>
-            </Incluir>
+            {!entradas ? (
+              ""
+            ) : (
+              <Saldo color={total >= 0 ? "entrada" : "saida"}>
+                <span>Total</span>
+                <div className="value">{(total / 100).toFixed(2)}</div>
+              </Saldo>
+            )}
           </Extrat>
+          <Incluir onClick={() => setPage("inserir")}>
+            <div>
+              <FcPlus size={50} />
+            </div>
+          </Incluir>
         </>
       ) : (
         <>
           <Title>
-            <h1>Nova Obra</h1>
-            <BiHome size={25} color={"#ffffff"} onClick={() => setPage("")} />
+            <h1>Nova Entrada para {obraContext.name}</h1>
+            <RiArrowGoBackFill
+              size={25}
+              color={"#ffffff"}
+              onClick={() => setPage("")}
+            />
           </Title>
-          <form onSubmit={handleObra}>
+          <form onSubmit={handleEntrada}>
             <Input>
               <input
                 value={valor}
@@ -142,18 +152,11 @@ export default function ObrasPage() {
                 }}
                 placeholder="Valor"
               />
-              <input
-                type="text"
-                value={formData.name}
-                name="name"
-                onChange={(e) => handleInput(e)}
-                placeholder="Nome da Obra"
-              />
               <button type="submit" disabled={disabledButton}>
                 {disabledButton ? (
                   <img width={50} height={50} src={loadImage} alt="Loading" />
                 ) : (
-                  "Salvar Obra"
+                  "Salvar Entrada"
                 )}
               </button>
             </Input>

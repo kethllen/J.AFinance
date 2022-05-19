@@ -115,7 +115,7 @@ const Description = styled.div`
 const Input = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 96px;
+  margin-top: 35px;
   input {
     height: 58px;
     width: 326px;

@@ -58,7 +58,7 @@ const Extrat = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
-  height: 80vh;
+  height: 70vh;
   width: 326px;
   padding: 13px;
   padding-bottom: 40px;
@@ -84,9 +84,9 @@ const Extrat = styled.div`
   }
 `;
 const Incluir = styled.div`
-  position: fixed;
-  right: 35px;
-  bottom: 40px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 `;
 const Valor = styled.div`
   font-family: "Raleway", sans-serif;
@@ -104,8 +104,9 @@ const Description = styled.div`
   gap: 10px;
   padding-top: 15px;
   margin-bottom: 15px;
-  cursor: pointer;
-
+  .data {
+    color: #c6c6c6;
+  }
   span {
     padding-top: 5px;
     color: #000000;
@@ -150,4 +151,33 @@ const Input = styled.div`
     text-align: center;
   }
 `;
-export { Container, Extrat, Title, Description, Valor, Linha, Incluir, Input };
+const Saldo = styled.div`
+  width: 303px;
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 12px;
+  .value {
+    font-weight: 400;
+    text-align: right;
+    color: ${(props) => (props.color === "saida" ? "#c70000" : "#03AC00")};
+  }
+  span {
+    font-weight: 700;
+    color: #000000;
+  }
+`;
+export {
+  Container,
+  Extrat,
+  Title,
+  Description,
+  Valor,
+  Linha,
+  Incluir,
+  Input,
+  Saldo,
+};

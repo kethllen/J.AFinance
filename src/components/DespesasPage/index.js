@@ -8,16 +8,19 @@ import {
   Linha,
   Description,
   Input,
+  Valor,
+  Saldo,
 } from "./style";
 import exit from "../../assets/exit.png";
 import TokenContext from "../../contexts/TokenContext";
 import * as api from "../../services/api";
 import { FcPlus } from "react-icons/fc";
-import { FcHome } from "react-icons/fc";
+import { GiMoneyStack } from "react-icons/gi";
 import Swal from "sweetalert2";
 import loadImage from "../../assets/authLoad.svg";
-import { BiHome } from "react-icons/bi";
+import { RiArrowGoBackFill } from "react-icons/ri";
 import ObraContext from "../../contexts/ObraContext";
+import dayjs from "dayjs";
 
 const maskOnlyNumbers = (value) => {
   return (Number(value.replace(/\D/g, "")) / 100).toLocaleString("pt-BR", {
@@ -26,26 +29,30 @@ const maskOnlyNumbers = (value) => {
   });
 };
 
-export default function ObrasPage() {
+export default function DespesasPage() {
   const { token, setToken } = useContext(TokenContext);
   const { obraContext, setObraContext } = useContext(ObraContext);
   const [page, setPage] = useState();
-  const [obras, setObras] = useState([]);
+  const [despesas, setDespesas] = useState([]);
   const [valor, setValor] = useState([]);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorData, setErrorData] = useState();
+  const date = dayjs().format("DD-MM-YYYY");
+  let total = 0;
   const [formData, setFormData] = useState({
-    name: "",
+    obraId: parseInt(obraContext.id),
+    description: "",
+    data: date,
     valor: "",
   });
+
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const promise = await api.obrasGet(token);
-    setObras(promise);
+    const promise = await api.despesasGet(token, obraContext.id);
+    setDespesas(promise);
   }, [page]);
   if (token === "") return;
-  console.log(obras);
 
   function handleInput(e) {
     if (e.target.name == "valor") {
@@ -56,20 +63,18 @@ export default function ObrasPage() {
     }
   }
 
-  async function handleObra(e) {
+  async function handleDespesa(e) {
     e.preventDefault();
     setDisabledButton(true);
     setErrorData({ ...formData });
     setTimeout(() => setErrorData(), 3500);
 
-    const imageNotEmpty = formData.valor !== "";
-    const nameNotEmpty = formData.name !== "";
-    const promise = await api.obrasPost(token, formData);
-    if (promise === 409) {
+    const promise = await api.despesasPost(token, formData);
+    if (promise === 401) {
       return Swal.fire({
         icon: "error",
         title: "Ops...",
-        text: "Este nome de obra ja está cadastrado!",
+        text: "Este nome de obra não está cadastrado!",
       });
     } else if (promise === 422) {
       return Swal.fire({
@@ -83,55 +88,63 @@ export default function ObrasPage() {
     }
     setPage("");
   }
+  despesas.map((n) => (total += n.valor));
   return (
     <Container>
       {!page ? (
         <>
           <Title>
-            <h1>Obras</h1>
-            <img
-              src={exit}
-              onClick={() => {
-                localStorage.setItem("token", "");
-                setToken("");
-                navigate("/");
-              }}
-            ></img>
+            <h1>Despesas de {obraContext.name}</h1>
+            <RiArrowGoBackFill
+              size={28}
+              color={"#ffffff"}
+              onClick={() => navigate("/obras/service")}
+            />
           </Title>
           <Extrat>
-            {!obras ? (
+            {!despesas ? (
               <h1>
-                Não há registros de<br></br>obras
+                Não há registros de<br></br>despesas para esta obra!
               </h1>
             ) : (
-              obras.map((n) => (
+              despesas.map((n) => (
                 <Linha>
-                  <Description
-                    onClick={() => {
-                      setObraContext({ id: n.id, name: n.name });
-                      navigate("/obras/services");
-                    }}
-                  >
-                    <FcHome size={30} />
-                    <span>{n.name}</span>
+                  <Description>
+                    <GiMoneyStack size={30} color={"#c70000"} />
+                    <p className="data">{n.data.substring(0, 5)}</p>
+                    <span>{n.description}</span>
                   </Description>
+
+                  <Valor color={"saida"}>{(n.valor / 100).toFixed(2)}</Valor>
                 </Linha>
               ))
             )}
-            <Incluir onClick={() => setPage("inserir")}>
-              <div>
-                <FcPlus size={40} />
-              </div>
-            </Incluir>
+            {!despesas ? (
+              ""
+            ) : (
+              <Saldo color={"saida"}>
+                <span>Total</span>
+                <div className="value">{(total / 100).toFixed(2)}</div>
+              </Saldo>
+            )}
           </Extrat>
+          <Incluir onClick={() => setPage("inserir")}>
+            <div>
+              <FcPlus size={50} />
+            </div>
+          </Incluir>
         </>
       ) : (
         <>
           <Title>
-            <h1>Nova Obra</h1>
-            <BiHome size={25} color={"#ffffff"} onClick={() => setPage("")} />
+            <h1>Nova Despesa para {obraContext.name}</h1>
+            <RiArrowGoBackFill
+              size={25}
+              color={"#ffffff"}
+              onClick={() => setPage("")}
+            />
           </Title>
-          <form onSubmit={handleObra}>
+          <form onSubmit={handleDespesa}>
             <Input>
               <input
                 value={valor}
@@ -144,16 +157,16 @@ export default function ObrasPage() {
               />
               <input
                 type="text"
-                value={formData.name}
-                name="name"
+                value={formData.description}
+                name="description"
                 onChange={(e) => handleInput(e)}
-                placeholder="Nome da Obra"
+                placeholder="Nome da Despesa"
               />
               <button type="submit" disabled={disabledButton}>
                 {disabledButton ? (
                   <img width={50} height={50} src={loadImage} alt="Loading" />
                 ) : (
-                  "Salvar Obra"
+                  "Salvar Despesa"
                 )}
               </button>
             </Input>

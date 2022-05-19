@@ -13,63 +13,50 @@ import exit from "../../assets/exit.png";
 import TokenContext from "../../contexts/TokenContext";
 import * as api from "../../services/api";
 import { FcPlus } from "react-icons/fc";
-import { FcHome } from "react-icons/fc";
+import { FaUserAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import loadImage from "../../assets/authLoad.svg";
+import { RiArrowGoBackFill } from "react-icons/ri";
 import { BiHome } from "react-icons/bi";
 import ObraContext from "../../contexts/ObraContext";
 
-const maskOnlyNumbers = (value) => {
-  return (Number(value.replace(/\D/g, "")) / 100).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-};
-
-export default function ObrasPage() {
+export default function FuncionariosPage() {
   const { token, setToken } = useContext(TokenContext);
-  const { obraContext, setObraContext } = useContext(ObraContext);
   const [page, setPage] = useState();
-  const [obras, setObras] = useState([]);
-  const [valor, setValor] = useState([]);
+  const [funcionarios, setFuncionarios] = useState([]);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorData, setErrorData] = useState();
   const [formData, setFormData] = useState({
-    name: "",
-    valor: "",
+    nome: "",
+    conta: "",
+    agencia: "",
+    operacao: "",
+    pix: "",
   });
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const promise = await api.obrasGet(token);
-    setObras(promise);
+    const promise = await api.funcionariosGet(token);
+    setFuncionarios(promise);
   }, [page]);
   if (token === "") return;
-  console.log(obras);
 
   function handleInput(e) {
-    if (e.target.name == "valor") {
-      const valor = parseInt(e.target.value.replace(/\D/g, ""));
-      setFormData({ ...formData, [e.target.name]: valor });
-    } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-    }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  async function handleObra(e) {
+  async function handleFuncionario(e) {
     e.preventDefault();
     setDisabledButton(true);
     setErrorData({ ...formData });
     setTimeout(() => setErrorData(), 3500);
 
-    const imageNotEmpty = formData.valor !== "";
-    const nameNotEmpty = formData.name !== "";
-    const promise = await api.obrasPost(token, formData);
+    const promise = await api.funcionariosPost(token, formData);
     if (promise === 409) {
       return Swal.fire({
         icon: "error",
         title: "Ops...",
-        text: "Este nome de obra ja está cadastrado!",
+        text: "Este nome de funcionario ja está cadastrado!",
       });
     } else if (promise === 422) {
       return Swal.fire({
@@ -88,32 +75,29 @@ export default function ObrasPage() {
       {!page ? (
         <>
           <Title>
-            <h1>Obras</h1>
-            <img
-              src={exit}
-              onClick={() => {
-                localStorage.setItem("token", "");
-                setToken("");
-                navigate("/");
-              }}
-            ></img>
+            <h1>Funcionarios</h1>
+            <RiArrowGoBackFill
+              size={28}
+              color={"#ffffff"}
+              onClick={() => navigate("/obras/services")}
+            />
           </Title>
           <Extrat>
-            {!obras ? (
+            {!funcionarios ? (
               <h1>
-                Não há registros de<br></br>obras
+                Não há registros de<br></br>funcionarios
               </h1>
             ) : (
-              obras.map((n) => (
+              funcionarios.map((n) => (
                 <Linha>
                   <Description
                     onClick={() => {
-                      setObraContext({ id: n.id, name: n.name });
-                      navigate("/obras/services");
+                      setFuncionario(n);
+                      navigate(`/funcionarios/${n.id}`);
                     }}
                   >
-                    <FcHome size={30} />
-                    <span>{n.name}</span>
+                    <FaUserAlt size={25} />
+                    <span>{n.nome}</span>
                   </Description>
                 </Linha>
               ))
@@ -128,32 +112,55 @@ export default function ObrasPage() {
       ) : (
         <>
           <Title>
-            <h1>Nova Obra</h1>
-            <BiHome size={25} color={"#ffffff"} onClick={() => setPage("")} />
+            <h1>Novo Funcionario</h1>
+            <RiArrowGoBackFill
+              size={25}
+              color={"#ffffff"}
+              onClick={() => setPage("")}
+            />
           </Title>
-          <form onSubmit={handleObra}>
+          <form onSubmit={handleFuncionario}>
             <Input>
               <input
-                value={valor}
-                name="valor"
-                onChange={(e) => {
-                  setValor(maskOnlyNumbers(e.target.value));
-                  handleInput(e);
-                }}
-                placeholder="Valor"
+                type="text"
+                value={formData.nome}
+                name="nome"
+                onChange={(e) => handleInput(e)}
+                placeholder="Nome"
               />
               <input
                 type="text"
-                value={formData.name}
-                name="name"
+                value={formData.conta}
+                name="conta"
                 onChange={(e) => handleInput(e)}
-                placeholder="Nome da Obra"
+                placeholder="Conta"
+              />
+              <input
+                type="text"
+                value={formData.agencia}
+                name="agencia"
+                onChange={(e) => handleInput(e)}
+                placeholder="Agencia"
+              />
+              <input
+                type="text"
+                value={formData.operacao}
+                name="operacao"
+                onChange={(e) => handleInput(e)}
+                placeholder="Operação"
+              />
+              <input
+                type="text"
+                value={formData.pix}
+                name="pix"
+                onChange={(e) => handleInput(e)}
+                placeholder="Chave pix"
               />
               <button type="submit" disabled={disabledButton}>
                 {disabledButton ? (
                   <img width={50} height={50} src={loadImage} alt="Loading" />
                 ) : (
-                  "Salvar Obra"
+                  "Salvar Funcionario"
                 )}
               </button>
             </Input>
