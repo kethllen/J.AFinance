@@ -13,18 +13,17 @@ import FuncionarioContext from "../../contexts/FuncionarioContext";
 import TokenContext from "../../contexts/TokenContext";
 import * as api from "../../services/api";
 import { FcPlus } from "react-icons/fc";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import loadImage from "../../assets/authLoad.svg";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { BiHome } from "react-icons/bi";
 import ObraContext from "../../contexts/ObraContext";
 
-export default function FuncionariosPage() {
+export default function FuncionarioDataPage() {
   const { token, setToken } = useContext(TokenContext);
   const { funcionario, setFuncionario } = useContext(FuncionarioContext);
   const [page, setPage] = useState();
-  const [funcionarios, setFuncionarios] = useState([]);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorData, setErrorData] = useState();
   const [formData, setFormData] = useState({
@@ -36,10 +35,6 @@ export default function FuncionariosPage() {
   });
   const navigate = useNavigate();
 
-  useEffect(async () => {
-    const promise = await api.funcionariosGet(token);
-    setFuncionarios(promise);
-  }, [page]);
   if (token === "") return;
 
   function handleInput(e) {
@@ -76,7 +71,7 @@ export default function FuncionariosPage() {
       {!page ? (
         <>
           <Title>
-            <h1>Funcionarios</h1>
+            <h1>{funcionario.nome}</h1>
             <RiArrowGoBackFill
               size={28}
               color={"#ffffff"}
@@ -84,36 +79,42 @@ export default function FuncionariosPage() {
             />
           </Title>
           <Extrat>
-            {!funcionarios ? (
-              <h1>
-                Não há registros de<br></br>funcionarios
-              </h1>
-            ) : (
-              funcionarios.map((n) => (
-                <Linha>
-                  <Description
-                    onClick={() => {
-                      setFuncionario(n);
-                      navigate(`/funcionarios/${n.id}`);
-                    }}
-                  >
-                    <FaUserAlt size={25} />
-                    <span>{n.nome}</span>
-                  </Description>
-                </Linha>
-              ))
-            )}
+            <Linha>
+              <Description>
+                <span>Conta: </span>
+                <span>{funcionario.conta}</span>
+              </Description>
+            </Linha>
+            <Linha>
+              <Description>
+                <span>Agencia: </span>
+                <span>{funcionario.agencia}</span>
+              </Description>
+            </Linha>
+            <Linha>
+              <Description>
+                <span>Operação: </span>
+                <span>{funcionario.operacao}</span>
+              </Description>
+            </Linha>
+            <Linha>
+              <Description>
+                <span>Pix: </span>
+                <span>{funcionario.pix}</span>
+              </Description>
+            </Linha>
+
+            <Incluir onClick={() => setPage("inserir")}>
+              <div>
+                <FaUserEdit size={40} />
+              </div>
+            </Incluir>
           </Extrat>
-          <Incluir onClick={() => setPage("inserir")}>
-            <div>
-              <FcPlus size={40} />
-            </div>
-          </Incluir>
         </>
       ) : (
         <>
           <Title>
-            <h1>Novo Funcionario</h1>
+            <h1>Editar Funcionario</h1>
             <RiArrowGoBackFill
               size={25}
               color={"#ffffff"}

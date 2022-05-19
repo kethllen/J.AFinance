@@ -58,7 +58,7 @@ const Extrat = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
-  height: 70vh;
+  height: 80vh;
   width: 326px;
   padding: 13px;
   padding-bottom: 40px;
@@ -84,9 +84,9 @@ const Extrat = styled.div`
   }
 `;
 const Incluir = styled.div`
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  right: 35px;
+  bottom: 40px;
 `;
 const Valor = styled.div`
   font-family: "Raleway", sans-serif;
