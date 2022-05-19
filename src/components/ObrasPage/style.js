@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   min-height: 100vh;
-  background-color: #8c11be;
+  background-color: #ffa500;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,6 +30,24 @@ const Title = styled.div`
     width: 23px;
     color: #ffffff;
   }
+  .logo {
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    img {
+      height: 30px;
+      width: 40px;
+    }
+    h1 {
+      font-family: "Saira Stencil One", cursive;
+      font-size: 16px;
+      color: #ffffff;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 50px;
+      letter-spacing: 0em;
+    }
+  }
 `;
 const Linha = styled.div`
   display: flex;
@@ -40,7 +58,7 @@ const Extrat = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
-  height: 60vh;
+  height: 80vh;
   width: 326px;
   padding: 13px;
   padding-bottom: 40px;
@@ -65,6 +83,11 @@ const Extrat = styled.div`
     justify-self: center;
   }
 `;
+const Incluir = styled.div`
+  position: fixed;
+  right: 35px;
+  bottom: 40px;
+`;
 const Valor = styled.div`
   font-family: "Raleway", sans-serif;
   font-size: 16px;
@@ -74,17 +97,18 @@ const Valor = styled.div`
 `;
 const Description = styled.div`
   font-family: "Raleway", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   display: flex;
-  gap: 5px;
+  gap: 10px;
   padding-top: 15px;
   margin-bottom: 15px;
   .data {
     color: #c6c6c6;
   }
   span {
+    padding-top: 5px;
     color: #000000;
   }
 `;
@@ -120,5 +144,53 @@ const Footer = styled.div`
     border-radius: 5px;
   }
 `;
-
-export { Container, Extrat, Title, Footer, Saldo, Description, Valor, Linha };
+const Input = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 96px;
+  input {
+    height: 58px;
+    width: 326px;
+    left: 25px;
+    top: 233px;
+    border-radius: 5px;
+    margin-bottom: 3%;
+    background-color: #ffffff;
+    border: none;
+    ::placeholder {
+      color: #000000;
+      font-family: "Raleway", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      text-align: left;
+    }
+  }
+  button {
+    height: 46px;
+    width: 326px;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    margin-bottom: 36px;
+    background-color: #ff8c00;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+`;
+export {
+  Container,
+  Extrat,
+  Title,
+  Footer,
+  Saldo,
+  Description,
+  Valor,
+  Linha,
+  Incluir,
+  Input,
+};

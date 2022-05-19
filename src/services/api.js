@@ -5,7 +5,7 @@ const BASE_URL = process.env.REACT_APP_BACK_URL;
 function createConfig(token) {
   return {
     headers: {
-      Authorization: `${token}`,
+      Authorization: token,
     },
   };
 }
@@ -25,5 +25,29 @@ export async function signIn(formData) {
     return promise.data;
   } catch (error) {
     console.log(error.response);
+  }
+}
+
+export async function obrasGet(token) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.get(`${BASE_URL}/obras`, authorization);
+    return promise.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+}
+export async function obrasPost(token, formData) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.post(
+      `${BASE_URL}/obras`,
+      formData,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    const erro = error.response.status;
+    return erro;
   }
 }

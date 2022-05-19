@@ -3,25 +3,23 @@ import * as api from "../../services/api";
 import { useNavigate } from "react-router";
 import { Container, StyledLink, Title, Input } from "./style";
 import TokenContext from "../../contexts/TokenContext";
-import NameContext from "../../contexts/NameContext";
 import logo from "../../assets/logo.png";
 
 export default function LoginPage() {
   const { setToken } = useContext(TokenContext);
-  const { setNameContext } = useContext(NameContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   async function handleLogin(e) {
     e.preventDefault();
-    const token = await api.signIn({
+    const { token } = await api.signIn({
       email,
       password,
     });
     if (token) {
       localStorage.setItem("token", token);
       setToken(token);
-      navigate("/extract");
+      navigate("/obras");
     }
   }
 

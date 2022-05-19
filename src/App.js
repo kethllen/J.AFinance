@@ -4,9 +4,7 @@ import LoginPage from "./components/LoginPage";
 import TokenContext from "./contexts/TokenContext";
 import NameContext from "./contexts/NameContext";
 import SingUpPage from "./components/SingUpPage";
-import ExtractPage from "./components/ExtractPage";
-import EntradaPage from "./components/EntradaPage";
-import SaidaPage from "./components/SaidaPage";
+import ObrasPage from "./components/ObrasPage";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -18,9 +16,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/sing-up" element={<SingUpPage />} />
-            <Route path="/extract" element={<ExtractPage />} />
-            <Route path="/entrada" element={<EntradaPage />} />
-            <Route path="/saida" element={<SaidaPage />} />
+            <Route path="/obras" element={<ObrasPage />} />
           </Routes>
         </BrowserRouter>
       </NameContext.Provider>
