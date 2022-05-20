@@ -23,7 +23,7 @@ import ObraContext from "../../contexts/ObraContext";
 export default function FuncionariosPage() {
   const { token, setToken } = useContext(TokenContext);
   const { funcionario, setFuncionario } = useContext(FuncionarioContext);
-  const [page, setPage] = useState();
+  const [page, setPage] = useState("");
   const [funcionarios, setFuncionarios] = useState([]);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorData, setErrorData] = useState();
@@ -46,12 +46,12 @@ export default function FuncionariosPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  async function handleFuncionario() {
+  async function handleFuncionario(e) {
+    e.preventDefault();
     setDisabledButton(true);
-    setErrorData({ ...formData });
-    setTimeout(() => setErrorData(), 3500);
 
     const promise = await api.funcionariosPost(token, formData);
+
     if (promise === 409) {
       return Swal.fire({
         icon: "error",

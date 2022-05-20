@@ -120,6 +120,7 @@ export async function funcionariosPost(token, formData) {
       formData,
       authorization
     );
+    console.log(promise);
     return promise.data;
   } catch (error) {
     const erro = error.response.status;
@@ -134,6 +135,7 @@ export async function funcionariosUpdate(token, id, formData) {
       formData,
       authorization
     );
+    console.log(promise);
     return promise.data;
   } catch (error) {
     const erro = error.response.status;

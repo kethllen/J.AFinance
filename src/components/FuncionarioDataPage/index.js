@@ -166,7 +166,7 @@ export default function FuncionarioDataPage() {
           <Input>
             <button
               disabled={disabledButton}
-              onClick={() => handleFuncionario()}
+              onClick={(e) => handleFuncionario(e)}
             >
               {disabledButton ? (
                 <img width={50} height={50} src={loadImage} alt="Loading" />
