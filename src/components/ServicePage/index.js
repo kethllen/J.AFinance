@@ -52,7 +52,7 @@ export default function ObrasPage() {
           <IoConstructSharp size={35} color={"#ffffff"} />
           Materiais
         </div>
-        <div>
+        <div onClick={() => navigate("/empreitas")}>
           <RiFolderUserLine size={35} color={"#ffffff"} />
           Empreitas
         </div>

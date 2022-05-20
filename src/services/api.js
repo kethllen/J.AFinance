@@ -103,6 +103,33 @@ export async function despesasPost(token, formData) {
     return erro;
   }
 }
+
+export async function empreitasGet(token, id) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.get(
+      `${BASE_URL}/obras/${id}/empreitas`,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+}
+export async function empreitasPost(token, formData) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.post(
+      `${BASE_URL}/empreitas`,
+      formData,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    const erro = error.response.status;
+    return erro;
+  }
+}
 export async function funcionariosGet(token) {
   try {
     const authorization = createConfig(token);
@@ -120,7 +147,7 @@ export async function funcionariosPost(token, formData) {
       formData,
       authorization
     );
-    console.log(promise);
+
     return promise.data;
   } catch (error) {
     const erro = error.response.status;
