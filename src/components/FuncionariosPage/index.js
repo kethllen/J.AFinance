@@ -46,8 +46,7 @@ export default function FuncionariosPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  async function handleFuncionario(e) {
-    e.preventDefault();
+  async function handleFuncionario() {
     setDisabledButton(true);
     setErrorData({ ...formData });
     setTimeout(() => setErrorData(), 3500);

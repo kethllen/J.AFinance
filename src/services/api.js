@@ -126,3 +126,17 @@ export async function funcionariosPost(token, formData) {
     return erro;
   }
 }
+export async function funcionariosUpdate(token, id, formData) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.put(
+      `${BASE_URL}/funcionarios/${id}`,
+      formData,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    const erro = error.response.status;
+    return erro;
+  }
+}

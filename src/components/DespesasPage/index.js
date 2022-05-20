@@ -98,7 +98,7 @@ export default function DespesasPage() {
             <RiArrowGoBackFill
               size={28}
               color={"#ffffff"}
-              onClick={() => navigate("/obras/service")}
+              onClick={() => navigate("/obras/services")}
             />
           </Title>
           <Extrat>

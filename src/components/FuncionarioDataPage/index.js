@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import {
   Container,
@@ -26,12 +26,13 @@ export default function FuncionarioDataPage() {
   const [page, setPage] = useState();
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorData, setErrorData] = useState();
+  const inputRef = useRef(null);
   const [formData, setFormData] = useState({
-    nome: "",
-    conta: "",
-    agencia: "",
-    operacao: "",
-    pix: "",
+    nome: funcionario.nome,
+    conta: funcionario.conta,
+    agencia: funcionario.agencia,
+    operacao: funcionario.operacao,
+    pix: funcionario.pix,
   });
   const navigate = useNavigate();
 
@@ -47,7 +48,11 @@ export default function FuncionarioDataPage() {
     setErrorData({ ...formData });
     setTimeout(() => setErrorData(), 3500);
 
-    const promise = await api.funcionariosPost(token, formData);
+    const promise = await api.funcionariosUpdate(
+      token,
+      funcionario.id,
+      formData
+    );
     if (promise === 409) {
       return Swal.fire({
         icon: "error",
@@ -68,51 +73,116 @@ export default function FuncionarioDataPage() {
   }
   return (
     <Container>
-      {!page ? (
-        <>
-          <Title>
-            <h1>{funcionario.nome}</h1>
-            <RiArrowGoBackFill
-              size={28}
-              color={"#ffffff"}
-              onClick={() => navigate("/obras/services")}
-            />
-          </Title>
-          <Extrat>
-            <Linha>
-              <Description>
-                <span>Conta: </span>
-                <span>{funcionario.conta}</span>
-              </Description>
-            </Linha>
-            <Linha>
-              <Description>
-                <span>Agencia: </span>
-                <span>{funcionario.agencia}</span>
-              </Description>
-            </Linha>
-            <Linha>
-              <Description>
-                <span>Operação: </span>
-                <span>{funcionario.operacao}</span>
-              </Description>
-            </Linha>
-            <Linha>
-              <Description>
-                <span>Pix: </span>
-                <span>{funcionario.pix}</span>
-              </Description>
-            </Linha>
-
-            <Incluir onClick={() => setPage("inserir")}>
-              <div>
-                <FaUserEdit size={40} />
-              </div>
-            </Incluir>
-          </Extrat>
-        </>
-      ) : (
-        <>
+      <Title>
+        {!page ? (
+          <h1>{funcionario.nome}</h1>
+        ) : (
+          <>
+            <h1>Editar</h1>
+            <input
+              type="text"
+              name="nome"
+              value={formData.nome}
+              onChange={(e) => handleInput(e)}
+            ></input>
+          </>
+        )}
+        <RiArrowGoBackFill
+          size={28}
+          color={"#ffffff"}
+          onClick={() => navigate("/obras/services")}
+        />
+      </Title>
+      <Extrat>
+        <Linha>
+          <Description>
+            <span>Conta: </span>
+            {!page ? (
+              <span>{funcionario.conta}</span>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  name="conta"
+                  value={formData.conta}
+                  onChange={(e) => handleInput(e)}
+                ></input>
+              </>
+            )}
+          </Description>
+        </Linha>
+        <Linha>
+          <Description>
+            <span>Agencia: </span>
+            {!page ? (
+              <span>{funcionario.agencia}</span>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  name="agencia"
+                  value={formData.agencia}
+                  onChange={(e) => handleInput(e)}
+                ></input>
+              </>
+            )}
+          </Description>
+        </Linha>
+        <Linha>
+          <Description>
+            <span>Operação: </span>
+            {!page ? (
+              <span>{funcionario.operacao}</span>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  name="operacao"
+                  value={formData.operacao}
+                  onChange={(e) => handleInput(e)}
+                ></input>
+              </>
+            )}
+          </Description>
+        </Linha>
+        <Linha>
+          <Description>
+            <span>Pix: </span>
+            {!page ? (
+              <span>{funcionario.pix}</span>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  name="pix"
+                  value={formData.pix}
+                  onChange={(e) => handleInput(e)}
+                ></input>
+              </>
+            )}
+          </Description>
+        </Linha>
+        {page && (
+          <Input>
+            <button
+              disabled={disabledButton}
+              onClick={() => handleFuncionario()}
+            >
+              {disabledButton ? (
+                <img width={50} height={50} src={loadImage} alt="Loading" />
+              ) : (
+                "Salvar Alterações"
+              )}
+            </button>
+          </Input>
+        )}
+        <Incluir onClick={() => setPage("editar")}>
+          <div>
+            <FaUserEdit size={40} />
+          </div>
+        </Incluir>
+      </Extrat>
+      {/*        
           <Title>
             <h1>Editar Funcionario</h1>
             <RiArrowGoBackFill
@@ -168,7 +238,7 @@ export default function FuncionarioDataPage() {
             </Input>
           </form>
         </>
-      )}
+      )} */}
     </Container>
   );
 }

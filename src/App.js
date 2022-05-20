@@ -19,6 +19,7 @@ export default function App() {
     id: "",
   });
   const [funcionario, setFuncionario] = useState({
+    id: "",
     nome: "",
     conta: "",
     agencia: "",

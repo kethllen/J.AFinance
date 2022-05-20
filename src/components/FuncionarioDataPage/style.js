@@ -136,7 +136,7 @@ const Input = styled.div`
   }
   button {
     height: 46px;
-    width: 326px;
+    width: 300px;
     border-radius: 5px;
     border: none;
     color: #ffffff;
