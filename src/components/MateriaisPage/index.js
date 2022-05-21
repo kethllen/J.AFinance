@@ -11,7 +11,6 @@ import {
   Valor,
   Saldo,
 } from "./style";
-import exit from "../../assets/exit.png";
 import TokenContext from "../../contexts/TokenContext";
 import * as api from "../../services/api";
 import { FcPlus } from "react-icons/fc";
@@ -29,11 +28,11 @@ const maskOnlyNumbers = (value) => {
   });
 };
 
-export default function DespesasPage() {
+export default function MateriaisPage() {
   const { token, setToken } = useContext(TokenContext);
   const { obraContext, setObraContext } = useContext(ObraContext);
   const [page, setPage] = useState();
-  const [despesas, setDespesas] = useState([]);
+  const [materiais, setMateriais] = useState([]);
   const [valor, setValor] = useState([]);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorData, setErrorData] = useState();
@@ -42,6 +41,7 @@ export default function DespesasPage() {
   const [formData, setFormData] = useState({
     obraId: parseInt(obraContext.id),
     description: "",
+    fornecedor: "",
     data: date,
     valor: "",
   });
@@ -49,8 +49,8 @@ export default function DespesasPage() {
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const promise = await api.despesasGet(token, obraContext.id);
-    setDespesas(promise);
+    const promise = await api.materiaisGet(token, obraContext.id);
+    setMateriais(promise);
   }, [page]);
   if (token === "") return;
 
@@ -63,13 +63,13 @@ export default function DespesasPage() {
     }
   }
 
-  async function handleDespesa(e) {
+  async function handleMaterias(e) {
     e.preventDefault();
     setDisabledButton(true);
     setErrorData({ ...formData });
     setTimeout(() => setErrorData(), 3500);
 
-    const promise = await api.despesasPost(token, formData);
+    const promise = await api.materiaisPost(token, formData);
     if (promise === 401) {
       return Swal.fire({
         icon: "error",
@@ -88,13 +88,13 @@ export default function DespesasPage() {
     }
     setPage("");
   }
-  despesas.map((n) => (total += n.valor));
+  materiais.map((n) => (total += n.valor));
   return (
     <Container>
       {!page ? (
         <>
           <Title>
-            <h1>Despesas de {obraContext.name}</h1>
+            <h1>Materiais de {obraContext.name}</h1>
             <RiArrowGoBackFill
               size={28}
               color={"#ffffff"}
@@ -102,12 +102,12 @@ export default function DespesasPage() {
             />
           </Title>
           <Extrat>
-            {!despesas ? (
+            {!materiais ? (
               <h1>
                 Não há registros de<br></br>despesas para esta obra!
               </h1>
             ) : (
-              despesas.map((n) => (
+              materiais.map((n) => (
                 <Linha>
                   <Description>
                     <p className="data">{n.data.substring(0, 5)}</p>
@@ -118,7 +118,7 @@ export default function DespesasPage() {
                 </Linha>
               ))
             )}
-            {!despesas ? (
+            {!materiais ? (
               ""
             ) : (
               <Saldo color={"saida"}>
@@ -136,14 +136,14 @@ export default function DespesasPage() {
       ) : (
         <>
           <Title>
-            <h1>Nova Despesa para {obraContext.name}</h1>
+            <h1>Novo Material para {obraContext.name}</h1>
             <RiArrowGoBackFill
               size={25}
               color={"#ffffff"}
               onClick={() => setPage("")}
             />
           </Title>
-          <form onSubmit={handleDespesa}>
+          <form onSubmit={handleMaterias}>
             <Input>
               <input
                 value={valor}
@@ -159,13 +159,20 @@ export default function DespesasPage() {
                 value={formData.description}
                 name="description"
                 onChange={(e) => handleInput(e)}
-                placeholder="Nome da Despesa"
+                placeholder="Nome do material"
+              />
+              <input
+                type="text"
+                value={formData.fornecedor}
+                name="fornecedor"
+                onChange={(e) => handleInput(e)}
+                placeholder="Nome da Fornecedor"
               />
               <button type="submit" disabled={disabledButton}>
                 {disabledButton ? (
                   <img width={50} height={50} src={loadImage} alt="Loading" />
                 ) : (
-                  "Salvar Despesa"
+                  "Salvar Material"
                 )}
               </button>
             </Input>

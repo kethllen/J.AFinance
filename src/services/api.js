@@ -104,6 +104,33 @@ export async function despesasPost(token, formData) {
   }
 }
 
+export async function materiaisGet(token, id) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.get(
+      `${BASE_URL}/obras/${id}/materiais`,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+}
+export async function materiaisPost(token, formData) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.post(
+      `${BASE_URL}/materiais`,
+      formData,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    const erro = error.response.status;
+    return erro;
+  }
+}
+
 export async function empreitasGet(token, id) {
   try {
     const authorization = createConfig(token);

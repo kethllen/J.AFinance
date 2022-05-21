@@ -117,7 +117,7 @@ export default function EmpreitasPage() {
                 <Empreita>
                   <Linha>
                     <Description>
-                      <RiFolderUserLine size={30} color={"#000000"} />
+                      <RiFolderUserLine size={30} color={"#ffffff"} />
                       <span>{n.description}</span>
                     </Description>
                     <Valor font-weight={"entrada"}>
@@ -134,7 +134,7 @@ export default function EmpreitasPage() {
                     <Description>
                       <h3>Valor Pago: </h3>
                     </Description>
-                    <Valor font-weight={"saida"}>
+                    <Valor font-weight={"entrada"}>
                       {(n.valorPago / 100).toFixed(2)}
                     </Valor>
                   </Linha>

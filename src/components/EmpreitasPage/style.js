@@ -58,8 +58,8 @@ const Linha = styled.div`
     font-family: "Raleway", sans-serif;
     font-size: 18px;
     font-style: normal;
-    font-weight: 400;
-    color: #000000;
+    font-weight: 500;
+    color: #ffffff;
   }
 `;
 
@@ -112,14 +112,14 @@ const Valor = styled.div`
   font-family: "Raleway", sans-serif;
   font-size: 16px;
   font-style: normal;
+  color: "#ff0000";
   font-weight: ${(props) => (props.color === "saida" ? 400 : 700)};
-  color: "#000000";
 `;
 const Description = styled.div`
   font-family: "Raleway", sans-serif;
   font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
@@ -128,17 +128,17 @@ const Description = styled.div`
   }
   span {
     padding-top: 5px;
-    color: #000000;
+    color: #ffffff;
     font-weight: 700;
   }
   p {
     padding-left: 35px;
 
-    color: #000000;
+    color: #ffffff;
   }
   h3 {
     padding-left: 35px;
-    color: #000000;
+    color: #ffffff;
   }
 `;
 const Input = styled.div`

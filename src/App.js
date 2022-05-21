@@ -13,6 +13,7 @@ import DespesasPage from "./components/DespesasPage";
 import FuncionariosPage from "./components/FuncionariosPage";
 import FuncionarioDataPage from "./components/FuncionarioDataPage";
 import EmpreitasPage from "./components/EmpreitasPage";
+import MateriaisPage from "./components/MateriaisPage";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -59,6 +60,7 @@ export default function App() {
                   element={<FuncionarioDataPage />}
                 />
                 <Route path="/empreitas" element={<EmpreitasPage />} />
+                <Route path="/materiais" element={<MateriaisPage />} />
               </Routes>
             </BrowserRouter>
           </FuncionariosContext.Provider>

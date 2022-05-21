@@ -48,7 +48,7 @@ export default function ObrasPage() {
           <FaUsers size={35} color={"#ffffff"} />
           Funcionarios
         </div>
-        <div>
+        <div onClick={() => navigate("/materiais")}>
           <IoConstructSharp size={35} color={"#ffffff"} />
           Materiais
         </div>
