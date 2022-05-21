@@ -45,7 +45,6 @@ export default function ObrasPage() {
     setObras(promise);
   }, [page]);
   if (token === "") return;
-  console.log(obras);
 
   function handleInput(e) {
     if (e.target.name == "valor") {

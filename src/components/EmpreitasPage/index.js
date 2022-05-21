@@ -10,6 +10,7 @@ import {
   Input,
   Valor,
   Saldo,
+  Empreita,
 } from "./style";
 import TokenContext from "../../contexts/TokenContext";
 import FuncionariosContext from "../../contexts/FuncionariosContext";
@@ -113,7 +114,7 @@ export default function EmpreitasPage() {
               </h1>
             ) : (
               empreitas.map((n) => (
-                <>
+                <Empreita>
                   <Linha>
                     <Description>
                       <RiFolderUserLine size={30} color={"#000000"} />
@@ -137,7 +138,7 @@ export default function EmpreitasPage() {
                       {(n.valorPago / 100).toFixed(2)}
                     </Valor>
                   </Linha>
-                </>
+                </Empreita>
               ))
             )}
           </Extrat>

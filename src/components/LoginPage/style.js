@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   min-height: 100vh;
-  background-color: #ffa500;
+  background-color: #808080;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@ const Input = styled.div`
     border: none;
     color: #ffffff;
     margin-bottom: 36px;
-    background-color: #ff8c00;
+    background-color: #469bd2;
     font-family: "Raleway", sans-serif;
     font-size: 20px;
     font-style: normal;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   min-height: 100vh;
-  background-color: #ffa500;
+  background-color: #808080;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,7 +57,7 @@ const Services = styled.div`
   width: 326px;
   padding: 13px;
   padding-bottom: 40px;
-
+  overflow: scroll;
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -67,7 +67,7 @@ const Services = styled.div`
     position: relative;
     height: 115px;
     width: 118px;
-    background-color: #ff8c00; //#000080
+    background-color: #7db9df; //#000080
     color: #ffffff;
     display: flex;
     flex-direction: column;

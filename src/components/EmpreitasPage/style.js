@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   min-height: 100vh;
-  background-color: #ffa500;
+  background-color: #808080;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,16 +62,28 @@ const Linha = styled.div`
     color: #000000;
   }
 `;
+
+const Empreita = styled.div`
+  box-sizing: border-box;
+  background-color: #7db9df;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left: 12px;
+  width: 326px;
+  margin-bottom: 10px;
+`;
 const Extrat = styled.div`
+  overflow: scroll;
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
   height: 70vh;
   width: 326px;
-  padding: 13px;
+
   padding-bottom: 40px;
   border-radius: 5px;
-  background-color: #ffffff;
+  // background-color: #ffffff;
   display: flex;
   flex-direction: column;
   h1 {
@@ -176,7 +188,7 @@ const Input = styled.div`
     border: none;
     color: #ffffff;
     margin-bottom: 36px;
-    background-color: #ff8c00;
+    background-color: #469bd2;
     font-family: "Raleway", sans-serif;
     font-size: 20px;
     font-style: normal;
@@ -214,4 +226,5 @@ export {
   Incluir,
   Input,
   Saldo,
+  Empreita,
 };

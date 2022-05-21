@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   min-height: 100vh;
-  background-color: #ffa500;
+  background-color: #808080;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,6 +55,7 @@ const Linha = styled.div`
   align-items: center;
 `;
 const Extrat = styled.div`
+  overflow: scroll;
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
@@ -63,7 +64,7 @@ const Extrat = styled.div`
   padding: 13px;
   padding-bottom: 40px;
   border-radius: 5px;
-  background-color: #ffffff;
+  background-color: #7db9df;
   display: flex;
   flex-direction: column;
   h1 {
@@ -71,7 +72,7 @@ const Extrat = styled.div`
     top: 180px;
     left: 68px;
     height: 100%;
-    color: #868686;
+    color: #ffffff;
     font-family: "Raleway", sans-serif;
     font-size: 20px;
     font-style: normal;
@@ -99,7 +100,7 @@ const Description = styled.div`
   font-family: "Raleway", sans-serif;
   font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   display: flex;
   gap: 10px;
   padding-top: 15px;
@@ -108,7 +109,7 @@ const Description = styled.div`
 
   span {
     padding-top: 5px;
-    color: #000000;
+    color: #ffffff;
   }
 `;
 
@@ -141,7 +142,7 @@ const Input = styled.div`
     border: none;
     color: #ffffff;
     margin-bottom: 36px;
-    background-color: #ff8c00;
+    background-color: #469bd2;
     font-family: "Raleway", sans-serif;
     font-size: 20px;
     font-style: normal;
