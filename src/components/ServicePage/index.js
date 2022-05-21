@@ -40,7 +40,7 @@ export default function ObrasPage() {
           <GiPayMoney size={35} color={"#ffffff"} />
           Despesas
         </div>
-        <div>
+        <div onClick={() => navigate("/fechamentos")}>
           <HiPencilAlt size={35} color={"#ffffff"} />
           Fechamentos
         </div>

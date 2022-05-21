@@ -130,6 +130,32 @@ export async function materiaisPost(token, formData) {
     return erro;
   }
 }
+export async function fechamentosGet(token, id) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.get(
+      `${BASE_URL}/obras/${id}/fechamentos`,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+}
+export async function fechamentosPost(token, formData) {
+  try {
+    const authorization = createConfig(token);
+    const promise = await axios.post(
+      `${BASE_URL}/fechamentos`,
+      formData,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    const erro = error.response.status;
+    return erro;
+  }
+}
 
 export async function empreitasGet(token, id) {
   try {

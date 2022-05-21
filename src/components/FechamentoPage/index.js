@@ -12,9 +12,10 @@ import {
   Saldo,
 } from "./style";
 import TokenContext from "../../contexts/TokenContext";
+import FechamentosContext from "../../contexts/FechamentosContext";
 import * as api from "../../services/api";
 import { FcPlus } from "react-icons/fc";
-import { GiMoneyStack } from "react-icons/gi";
+import { HiPencilAlt } from "react-icons/hi";
 import Swal from "sweetalert2";
 import loadImage from "../../assets/authLoad.svg";
 import { RiArrowGoBackFill } from "react-icons/ri";
@@ -28,11 +29,11 @@ const maskOnlyNumbers = (value) => {
   });
 };
 
-export default function MateriaisPage() {
+export default function FechamentosPage() {
   const { token, setToken } = useContext(TokenContext);
   const { obraContext, setObraContext } = useContext(ObraContext);
   const [page, setPage] = useState();
-  const [materiais, setMateriais] = useState([]);
+  const { fechamentos, setFechamentos } = useContext(FechamentosContext);
   const [valor, setValor] = useState([]);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorData, setErrorData] = useState();
@@ -40,17 +41,14 @@ export default function MateriaisPage() {
   let total = 0;
   const [formData, setFormData] = useState({
     obraId: parseInt(obraContext.id),
-    description: "",
-    fornecedor: "",
     data: date,
-    valor: "",
   });
-
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const promise = await api.materiaisGet(token, obraContext.id);
-    setMateriais(promise);
+    const promise = await api.fechamentosGet(token, obraContext.id);
+    console.log(promise);
+    setFechamentos(promise);
   }, [page]);
   if (token === "") return;
 
@@ -63,13 +61,10 @@ export default function MateriaisPage() {
     }
   }
 
-  async function handleMaterias(e) {
-    e.preventDefault();
+  async function createFechamento() {
     setDisabledButton(true);
-    setErrorData({ ...formData });
-    setTimeout(() => setErrorData(), 3500);
-
-    const promise = await api.materiaisPost(token, formData);
+    setPage("inserir");
+    const promise = await api.fechamentosPost(token, formData);
     if (promise === 401) {
       return Swal.fire({
         icon: "error",
@@ -88,13 +83,39 @@ export default function MateriaisPage() {
     }
     setPage("");
   }
-  materiais.map((n) => (total += n.valor));
+
+  async function handleFechamento(e) {
+    e.preventDefault();
+    setDisabledButton(true);
+    setErrorData({ ...formData });
+    setTimeout(() => setErrorData(), 3500);
+
+    const promise = await api.fechamentosPost(token, formData);
+    if (promise === 401) {
+      return Swal.fire({
+        icon: "error",
+        title: "Ops...",
+        text: "Este nome de obra não está cadastrado!",
+      });
+    } else if (promise === 422) {
+      return Swal.fire({
+        icon: "error",
+        title: "Ops...",
+        text: "Este formato esta errado!",
+      });
+    } else {
+      setDisabledButton(false);
+      setPage("");
+    }
+    setPage("");
+  }
+  fechamentos.map((n) => (total += n.valor));
   return (
     <Container>
       {!page ? (
         <>
           <Title>
-            <h1>Materiais de {obraContext.name}</h1>
+            <h1>Entradas de {obraContext.name}</h1>
             <RiArrowGoBackFill
               size={28}
               color={"#ffffff"}
@@ -102,23 +123,23 @@ export default function MateriaisPage() {
             />
           </Title>
           <Extrat>
-            {!materiais ? (
+            {!fechamentos ? (
               <h1>
-                Não há registros de<br></br>materiais para esta obra!
+                Não há registros de<br></br>fechamentos para esta obra!
               </h1>
             ) : (
-              materiais.map((n) => (
+              fechamentos.map((n) => (
                 <Linha>
                   <Description>
-                    <p className="data">{n.data.substring(0, 5)}</p>
-                    <span>{n.description}</span>
+                    <HiPencilAlt size={30} color={"#ffffff"} />
+                    <p className="data">{n.data}</p>
                   </Description>
 
                   <Valor color={"saida"}>{(n.valor / 100).toFixed(2)}</Valor>
                 </Linha>
               ))
             )}
-            {!materiais ? (
+            {!fechamentos ? (
               ""
             ) : (
               <Saldo color={"saida"}>
@@ -127,58 +148,20 @@ export default function MateriaisPage() {
               </Saldo>
             )}
           </Extrat>
-          <Incluir onClick={() => setPage("inserir")}>
+          <Incluir onClick={() => createFechamento()}>
             <div>
               <FcPlus size={50} />
             </div>
           </Incluir>
         </>
       ) : (
-        <>
-          <Title>
-            <h1>Novo Material para {obraContext.name}</h1>
-            <RiArrowGoBackFill
-              size={25}
-              color={"#ffffff"}
-              onClick={() => setPage("")}
-            />
-          </Title>
-          <form onSubmit={handleMaterias}>
-            <Input>
-              <input
-                value={valor}
-                name="valor"
-                onChange={(e) => {
-                  setValor(maskOnlyNumbers(e.target.value));
-                  handleInput(e);
-                }}
-                placeholder="Valor"
-              />
-              <input
-                type="text"
-                value={formData.description}
-                name="description"
-                onChange={(e) => handleInput(e)}
-                placeholder="Nome do material"
-              />
-              <input
-                type="text"
-                value={formData.fornecedor}
-                name="fornecedor"
-                onChange={(e) => handleInput(e)}
-                placeholder="Nome da Fornecedor"
-              />
-              <button type="submit" disabled={disabledButton}>
-                {disabledButton ? (
-                  <img width={50} height={50} src={loadImage} alt="Loading" />
-                ) : (
-                  "Salvar Material"
-                )}
-              </button>
-            </Input>
-          </form>
-        </>
+        <img width={150} height={150} src={loadImage} alt="Loading" />
       )}
     </Container>
   );
 }
+// .then((result) => {
+//   if (result.value) {
+//     setPage("");
+//   }
+// });
