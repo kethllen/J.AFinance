@@ -42,6 +42,7 @@ export default function ObrasPage() {
 
   useEffect(async () => {
     const promise = await api.obrasGet(token);
+    setObrasContext(promise);
     setObras(promise);
   }, [page]);
   if (token === "") return;

@@ -47,33 +47,23 @@ export default function PagamentosPage() {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     fechamentoId: parseInt(id),
-    empreitaId: 0,
+    empreitaId: 1,
     funcionarioId: 1,
     valor: 0,
     quantDias: "",
   });
-  const empreitasOptions = [
-    {
-      id: 0,
-      obraId: "",
-      funcionarioId: "",
-      valor: "",
-      description: "DIARISTA",
-    },
-    ...empreitas,
-  ];
   const navigate = useNavigate();
 
   useEffect(async () => {
     const promise = await api.empreitasGet(token, obraContext.id);
     setEmpreitas(promise);
     const promise2 = await api.funcionariosGet(token);
-    setFuncionarios(promise2);
+    setFuncionarios(promise2.slice(1, promise2.length));
+    const promise3 = await api.fechamentosGet(token, obraContext.id);
+    setFechamentos(promise3);
     const aux = fechamentos.filter((n) => n.id == parseInt(id));
-    data = aux.data;
-    setPagamentos(aux);
-    console.log("AUX");
-    console.log(aux);
+    data = aux[0].data;
+    setPagamentos(aux[0].pagamentos);
   }, [page]);
   if (token === "") return;
 
@@ -115,13 +105,13 @@ export default function PagamentosPage() {
     }
     setPage("");
   }
-  pagamentos?.map((n) => (total += n.valor));
+  pagamentos?.map((n) => (total += n.valorTotal));
   return (
     <Container>
       {!page ? (
         <>
           <Title>
-            <h1>Pagamentos</h1>
+            <h1>Pagamentos {data}</h1>
             <RiArrowGoBackFill
               size={28}
               color={"#ffffff"}
@@ -140,7 +130,9 @@ export default function PagamentosPage() {
                     <FaUserAlt size={25} color={"#ffffff"} />
                     <span>{n.funcionario.nome}</span>
                   </Description>
-                  <Valor color={"saida"}>{(n.valor / 100).toFixed(2)}</Valor>
+                  <Valor color={"saida"}>
+                    {(n.valorTotal / 100).toFixed(2)}
+                  </Valor>
                 </Linha>
               ))
             )}
@@ -193,7 +185,7 @@ export default function PagamentosPage() {
                   });
                 }}
               >
-                {empreitasOptions.map((f) => (
+                {empreitas.map((f) => (
                   <option value={f.id}>{f.description}</option>
                 ))}
               </select>

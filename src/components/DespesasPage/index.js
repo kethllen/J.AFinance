@@ -94,7 +94,7 @@ export default function DespesasPage() {
       {!page ? (
         <>
           <Title>
-            <h1>Despesas de {obraContext.name}</h1>
+            <h1>Despesas </h1>
             <RiArrowGoBackFill
               size={28}
               color={"#ffffff"}

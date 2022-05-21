@@ -47,7 +47,6 @@ export default function FechamentosPage() {
 
   useEffect(async () => {
     const promise = await api.fechamentosGet(token, obraContext.id);
-    console.log(promise);
     setFechamentos(promise);
   }, [page]);
   if (token === "") return;
@@ -115,7 +114,7 @@ export default function FechamentosPage() {
       {!page ? (
         <>
           <Title>
-            <h1>Entradas de {obraContext.name}</h1>
+            <h1>Fechamentos</h1>
             <RiArrowGoBackFill
               size={28}
               color={"#ffffff"}

@@ -23,6 +23,9 @@ export default function App() {
   const [obraContext, setObraContext] = useState({
     name: "",
     id: "",
+    userId: "",
+    valor: "",
+    valorAtual: "",
   });
   const [funcionario, setFuncionario] = useState({
     id: "",

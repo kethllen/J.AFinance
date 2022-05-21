@@ -178,7 +178,7 @@ export default function FuncionarioDataPage() {
         )}
         <Incluir onClick={() => setPage("editar")}>
           <div>
-            <FaUserEdit size={40} />
+            <FaUserEdit size={40} color={"#ffffff"} />
           </div>
         </Incluir>
       </Extrat>

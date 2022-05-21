@@ -92,7 +92,7 @@ export default function EntradasPage() {
       {!page ? (
         <>
           <Title>
-            <h1>Entradas de {obraContext.name}</h1>
+            <h1>Entradas</h1>
             <RiArrowGoBackFill
               size={28}
               color={"#ffffff"}

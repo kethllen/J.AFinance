@@ -54,7 +54,8 @@ export default function EmpreitasPage() {
 
   useEffect(async () => {
     const promise = await api.empreitasGet(token, obraContext.id);
-    setEmpreitas(promise);
+    setEmpreitas(promise.slice(1, promise.length));
+    console.log(empreitas);
     const promise2 = await api.funcionariosGet(token);
     setFuncionarios(promise2);
   }, [page]);

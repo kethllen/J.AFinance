@@ -10,6 +10,7 @@
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^4.0.3",
+    "recharts": "^2.1.10",
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.4.14"
   },
