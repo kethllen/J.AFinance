@@ -21,7 +21,7 @@ export default function ObrasPage() {
   return (
     <Container>
       <Title>
-        <div>
+        <div onClick={() => navigate("/dashboard")}>
           <GoGraph size={25} color={"#ffffff"} />
           <h1>{obraContext.name}</h1>
         </div>

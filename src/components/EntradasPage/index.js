@@ -106,7 +106,7 @@ export default function EntradasPage() {
               </h1>
             ) : (
               entradas.map((n) => (
-                <Linha>
+                <Linha key={n.id}>
                   <Description>
                     <GiMoneyStack size={30} color={"#008000"} />
                     <p className="data">{n.data}</p>

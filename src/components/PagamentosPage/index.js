@@ -125,7 +125,7 @@ export default function PagamentosPage() {
               </h1>
             ) : (
               pagamentos?.map((n) => (
-                <Linha>
+                <Linha key={n.id}>
                   <Description>
                     <FaUserAlt size={25} color={"#ffffff"} />
                     <span>{n.funcionario.nome}</span>

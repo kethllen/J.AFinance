@@ -108,7 +108,7 @@ export default function MateriaisPage() {
               </h1>
             ) : (
               materiais.map((n) => (
-                <Linha>
+                <Linha key={n.id}>
                   <Description>
                     <p className="data">{n.data.substring(0, 5)}</p>
                     <span>{n.description}</span>

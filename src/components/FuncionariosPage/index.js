@@ -89,7 +89,7 @@ export default function FuncionariosPage() {
               </h1>
             ) : (
               funcionarios.map((n) => (
-                <Linha>
+                <Linha key={n.id}>
                   <Description
                     onClick={() => {
                       setFuncionario(n);

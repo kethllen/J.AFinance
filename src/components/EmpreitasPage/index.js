@@ -115,7 +115,7 @@ export default function EmpreitasPage() {
               </h1>
             ) : (
               empreitas.map((n) => (
-                <Empreita>
+                <Empreita key={n.id}>
                   <Linha>
                     <Description>
                       <RiFolderUserLine size={30} color={"#ffffff"} />

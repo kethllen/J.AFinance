@@ -42,7 +42,6 @@ export default function ObrasPage() {
 
   useEffect(async () => {
     const promise = await api.obrasGet(token);
-    setObrasContext(promise);
     setObras(promise);
   }, [page]);
   if (token === "") return;
@@ -66,13 +65,13 @@ export default function ObrasPage() {
     const nameNotEmpty = formData.name !== "";
     const promise = await api.obrasPost(token, formData);
     if (promise === 409) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este nome de obra ja está cadastrado!",
       });
     } else if (promise === 422) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este formato esta errado!",
@@ -105,10 +104,10 @@ export default function ObrasPage() {
               </h1>
             ) : (
               obras.map((n) => (
-                <Linha>
+                <Linha key={n.id}>
                   <Description
                     onClick={() => {
-                      setObraContext({ id: n.id, name: n.name });
+                      setObraContext(n);
                       navigate("/obras/services");
                     }}
                   >

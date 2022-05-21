@@ -22,7 +22,6 @@ const Title = styled.div`
     line-height: 31px;
     letter-spacing: 0em;
     text-align: left;
-
     color: #ffffff;
   }
   img {
@@ -53,7 +52,6 @@ const Linha = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   span {
     font-family: "Raleway", sans-serif;
     font-size: 18px;
@@ -78,12 +76,9 @@ const Extrat = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
-  height: 70vh;
   width: 326px;
-
   padding-bottom: 40px;
   border-radius: 5px;
-  // background-color: #ffffff;
   display: flex;
   flex-direction: column;
   h1 {
@@ -133,7 +128,6 @@ const Description = styled.div`
   }
   p {
     padding-left: 35px;
-
     color: #ffffff;
   }
   h3 {

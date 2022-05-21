@@ -17,6 +17,7 @@ import EmpreitasPage from "./components/EmpreitasPage";
 import MateriaisPage from "./components/MateriaisPage";
 import FechamentosPage from "./components/FechamentoPage";
 import PagamentosPage from "./components/PagamentosPage";
+import DashboardPage from "./components/DashboardPage";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -79,6 +80,7 @@ export default function App() {
                   />
                   <Route path="/empreitas" element={<EmpreitasPage />} />
                   <Route path="/materiais" element={<MateriaisPage />} />
+                  <Route path="/dashboard" element={<DashboardPage />} />
                   <Route path="/fechamentos" element={<FechamentosPage />} />
                   <Route
                     path="/fechamentos/:id/pagamentos"

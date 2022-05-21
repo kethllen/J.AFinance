@@ -129,6 +129,7 @@ export default function FechamentosPage() {
             ) : (
               fechamentos.map((n) => (
                 <Linha
+                  key={n.id}
                   onClick={() => navigate(`/fechamentos/${n.id}/pagamentos`)}
                 >
                   <Description>
