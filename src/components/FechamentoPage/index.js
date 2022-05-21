@@ -129,7 +129,9 @@ export default function FechamentosPage() {
               </h1>
             ) : (
               fechamentos.map((n) => (
-                <Linha>
+                <Linha
+                  onClick={() => navigate(`/fechamentos/${n.id}/pagamentos`)}
+                >
                   <Description>
                     <HiPencilAlt size={30} color={"#ffffff"} />
                     <p className="data">{n.data}</p>

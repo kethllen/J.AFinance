@@ -55,6 +55,7 @@ const Linha = styled.div`
   align-items: center;
 `;
 const Extrat = styled.div`
+  overflow: scroll;
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
@@ -66,7 +67,6 @@ const Extrat = styled.div`
   background-color: #7db9df;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
   h1 {
     position: absolute;
     top: 180px;
@@ -100,23 +100,24 @@ const Description = styled.div`
   font-family: "Raleway", sans-serif;
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   display: flex;
   gap: 10px;
   padding-top: 15px;
   margin-bottom: 15px;
-  cursor: pointer;
-
+  .data {
+    color: #2e2e2e;
+  }
   span {
     padding-top: 5px;
-    color: #ffffff;
+    color: #000000;
   }
 `;
 
 const Input = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 35px;
+  margin-top: 96px;
   input {
     height: 58px;
     width: 326px;
@@ -127,6 +128,24 @@ const Input = styled.div`
     background-color: #ffffff;
     border: none;
     ::placeholder {
+      color: #000000;
+      font-family: "Raleway", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      text-align: left;
+    }
+  }
+  select {
+    height: 58px;
+    width: 326px;
+    left: 25px;
+    top: 233px;
+    border-radius: 5px;
+    margin-bottom: 3%;
+    background-color: #ffffff;
+    border: none;
+    option {
       color: #000000;
       font-family: "Raleway", sans-serif;
       font-size: 20px;
@@ -151,4 +170,33 @@ const Input = styled.div`
     text-align: center;
   }
 `;
-export { Container, Extrat, Title, Description, Valor, Linha, Incluir, Input };
+const Saldo = styled.div`
+  width: 303px;
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 12px;
+  .value {
+    font-weight: 500;
+    text-align: right;
+    color: ${(props) => (props.color === "saida" ? "#c70000" : "#03AC00")};
+  }
+  span {
+    font-weight: 700;
+    color: #000000;
+  }
+`;
+export {
+  Container,
+  Extrat,
+  Title,
+  Description,
+  Valor,
+  Linha,
+  Incluir,
+  Input,
+  Saldo,
+};

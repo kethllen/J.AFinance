@@ -16,6 +16,7 @@ import FuncionarioDataPage from "./components/FuncionarioDataPage";
 import EmpreitasPage from "./components/EmpreitasPage";
 import MateriaisPage from "./components/MateriaisPage";
 import FechamentosPage from "./components/FechamentoPage";
+import PagamentosPage from "./components/PagamentosPage";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -76,6 +77,10 @@ export default function App() {
                   <Route path="/empreitas" element={<EmpreitasPage />} />
                   <Route path="/materiais" element={<MateriaisPage />} />
                   <Route path="/fechamentos" element={<FechamentosPage />} />
+                  <Route
+                    path="/fechamentos/:id/pagamentos"
+                    element={<PagamentosPage />}
+                  />
                 </Routes>
               </BrowserRouter>
             </FechamentosContext.Provider>

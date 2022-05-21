@@ -104,6 +104,22 @@ export async function despesasPost(token, formData) {
   }
 }
 
+export async function pagamentosPost(token, formData) {
+  try {
+    const authorization = createConfig(token);
+    console.log(formData);
+    const promise = await axios.post(
+      `${BASE_URL}/pagamentos`,
+      formData,
+      authorization
+    );
+    return promise.data;
+  } catch (error) {
+    const erro = error.response.status;
+    return erro;
+  }
+}
+
 export async function materiaisGet(token, id) {
   try {
     const authorization = createConfig(token);

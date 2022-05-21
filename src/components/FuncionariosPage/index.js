@@ -96,7 +96,7 @@ export default function FuncionariosPage() {
                       navigate(`/funcionarios/${n.id}`);
                     }}
                   >
-                    <FaUserAlt size={25} />
+                    <FaUserAlt size={25} color={"#ffffff"} />
                     <span>{n.nome}</span>
                   </Description>
                 </Linha>
