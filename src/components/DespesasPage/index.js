@@ -90,6 +90,7 @@ export default function DespesasPage() {
         data: date,
         valor: "",
       });
+      setValor("");
       setPage("");
     }
     setPage("");

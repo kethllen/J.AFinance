@@ -85,9 +85,9 @@ const Extrat = styled.div`
   }
 `;
 const Incluir = styled.div`
-  position: fixed;
-  right: 35px;
-  bottom: 40px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 `;
 const Valor = styled.div`
   font-family: "Raleway", sans-serif;

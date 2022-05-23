@@ -47,7 +47,7 @@ export default function MateriaisPage() {
   });
 
   const navigate = useNavigate();
-
+  console.log(obraContext.id);
   useEffect(async () => {
     const promise = await api.materiaisGet(token, obraContext.id);
     setMateriais(promise);
@@ -91,6 +91,7 @@ export default function MateriaisPage() {
         data: date,
         valor: "",
       });
+      setValor("");
       setPage("");
     }
     setFormData({
@@ -100,6 +101,7 @@ export default function MateriaisPage() {
       data: date,
       valor: "",
     });
+    setValor(0);
     setPage("");
   }
   materiais.map((n) => (total += n.valor));

@@ -153,14 +153,12 @@ const Input = styled.div`
   }
 `;
 const Saldo = styled.div`
-  width: 303px;
   font-family: "Raleway", sans-serif;
   font-size: 17px;
   font-style: normal;
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  bottom: 12px;
+  margin-top: 20px;
   .value {
     font-weight: 500;
     text-align: right;

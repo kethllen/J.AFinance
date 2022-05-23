@@ -177,8 +177,8 @@ const Saldo = styled.div`
   font-style: normal;
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  bottom: 12px;
+  margin-top: 20px;
+  align-self: end;
   .value {
     font-weight: 500;
     text-align: right;

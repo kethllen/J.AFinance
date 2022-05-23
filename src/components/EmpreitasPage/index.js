@@ -97,6 +97,7 @@ export default function EmpreitasPage() {
         valor: "",
         description: "",
       });
+      setValor("");
       setPage("");
     }
     setPage("");

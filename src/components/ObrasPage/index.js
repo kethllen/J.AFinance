@@ -82,6 +82,7 @@ export default function ObrasPage() {
         name: "",
         valor: "",
       });
+      setValor("");
       setPage("");
     }
     setPage("");
@@ -121,12 +122,12 @@ export default function ObrasPage() {
                 </Linha>
               ))
             )}
-            <Incluir onClick={() => setPage("inserir")}>
-              <div>
-                <FcPlus size={40} />
-              </div>
-            </Incluir>
           </Extrat>
+          <Incluir onClick={() => setPage("inserir")}>
+            <div>
+              <FcPlus size={40} />
+            </div>
+          </Incluir>
         </>
       ) : (
         <>

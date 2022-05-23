@@ -49,23 +49,28 @@ export default function DashboardPage() {
 
   let valorDespesas = 0;
   despesas.map((n) => (valorDespesas += n.valor));
+
   let valorEntradas = obraContext.valorAtual;
+
   let valorMateriais = 0;
-  entradas.map((n) => (valorMateriais += n.valor));
+  materiais.map((n) => (valorMateriais += n.valor));
+
   let valorMaoDeObra = 0;
   fechamentos.map((n) => (valorMaoDeObra += n.valor));
+
   const saidas = valorDespesas + valorMateriais + valorMaoDeObra;
+
   const lucro = obraContext.valor - saidas;
   const valorEmCaixa = valorEntradas - saidas;
   if (token === "") return;
   const data = [
-    { name: "Materiais", value: valorMateriais },
-    { name: "Mão-de-Obra", value: valorMaoDeObra },
-    { name: "Despesas", value: valorDespesas },
     { name: "Lucro", value: lucro },
+    { name: "MãoDeObra", value: valorMaoDeObra },
+    { name: "Despesas", value: valorDespesas },
+    { name: "Materiais", value: valorMateriais },
   ];
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#008000", "#ffff00", "#c70000", "#f24f00"];
 
   const RADIAN = Math.PI / 180;
   let renderLabel = function (entry) {
@@ -85,7 +90,7 @@ export default function DashboardPage() {
         />
       </Title>
       <Extrat>
-        <div style={{ width: "100%", height: 300 }}>
+        <div style={{ width: "100%", height: 250 }}>
           <ResponsiveContainer>
             <PieChart>
               <Pie
@@ -120,7 +125,7 @@ export default function DashboardPage() {
           </Linha>
           <Linha>
             <Description>
-              <GiReceiveMoney size={30} color={"#008000"} />
+              <GiReceiveMoney size={30} color={"#ffffff"} />
               <span>Entradas</span>
             </Description>
             <Valor font-weight={"entrada"}>

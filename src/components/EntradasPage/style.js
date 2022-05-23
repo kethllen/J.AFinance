@@ -152,6 +152,7 @@ const Input = styled.div`
     text-align: center;
   }
 `;
+
 const Saldo = styled.div`
   width: 303px;
   font-family: "Raleway", sans-serif;
@@ -159,10 +160,10 @@ const Saldo = styled.div`
   font-style: normal;
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  bottom: 12px;
+  margin-top: 20px;
+  align-self: end;
   .value {
-    font-weight: 500;
+    font-weight: 700;
     text-align: right;
     color: ${(props) => (props.color === "saida" ? "#c70000" : "#008000")};
   }

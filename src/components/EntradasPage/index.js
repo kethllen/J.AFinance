@@ -87,6 +87,7 @@ export default function EntradasPage() {
         data: date,
         valor: "",
       });
+      setValor("");
       setPage("");
     }
     setPage("");

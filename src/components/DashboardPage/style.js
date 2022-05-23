@@ -76,7 +76,7 @@ const Extrat = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-top: 20px;
-  width: 326px;
+  //width: 326px;
   padding-bottom: 40px;
   border-radius: 5px;
   display: flex;

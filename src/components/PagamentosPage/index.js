@@ -117,6 +117,7 @@ export default function PagamentosPage() {
       valor: 0,
       quantDias: "",
     });
+    setValor("");
     setPage("");
   }
   pagamentos?.map((n) => (total += n.valorTotal));
