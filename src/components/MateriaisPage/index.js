@@ -84,6 +84,13 @@ export default function MateriaisPage() {
       });
     } else {
       setDisabledButton(false);
+      setFormData({
+        obraId: parseInt(obraContext.id),
+        description: "",
+        fornecedor: "",
+        data: date,
+        valor: "",
+      });
       setPage("");
     }
     setPage("");
