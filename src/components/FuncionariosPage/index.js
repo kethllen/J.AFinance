@@ -38,7 +38,7 @@ export default function FuncionariosPage() {
 
   useEffect(async () => {
     const promise = await api.funcionariosGet(token);
-    setFuncionarios(promise);
+    setFuncionarios(promise.slice(1, promise.length));
   }, [page]);
   if (token === "") return;
 
