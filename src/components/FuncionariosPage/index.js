@@ -66,8 +66,16 @@ export default function FuncionariosPage() {
       });
     } else {
       setDisabledButton(false);
+      setFormData({
+        nome: "",
+        conta: "",
+        agencia: "",
+        operacao: "",
+        pix: "",
+      });
       setPage("");
     }
+
     setPage("");
   }
   return (

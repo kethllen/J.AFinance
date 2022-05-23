@@ -88,21 +88,35 @@ export default function PagamentosPage() {
     const promise = await api.pagamentosPost(token, formData);
 
     if (promise === 409) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este nome de funcionario ja está cadastrado!",
       });
     } else if (promise === 422) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este formato esta errado!",
       });
     } else {
       setDisabledButton(false);
+      setFormData({
+        fechamentoId: parseInt(id),
+        empreitaId: 1,
+        funcionarioId: 1,
+        valor: 0,
+        quantDias: "",
+      });
       setPage("");
     }
+    setFormData({
+      fechamentoId: parseInt(id),
+      empreitaId: 1,
+      funcionarioId: 1,
+      valor: 0,
+      quantDias: "",
+    });
     setPage("");
   }
   pagamentos?.map((n) => (total += n.valorTotal));

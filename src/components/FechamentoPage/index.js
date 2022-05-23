@@ -65,13 +65,13 @@ export default function FechamentosPage() {
     setPage("inserir");
     const promise = await api.fechamentosPost(token, formData);
     if (promise === 401) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este nome de obra não está cadastrado!",
       });
     } else if (promise === 422) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este formato esta errado!",

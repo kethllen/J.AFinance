@@ -69,19 +69,24 @@ export default function EntradasPage() {
 
     const promise = await api.entradasPost(token, formData);
     if (promise === 401) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este nome de obra não está cadastrado!",
       });
     } else if (promise === 422) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este formato esta errado!",
       });
     } else {
       setDisabledButton(false);
+      setFormData({
+        obraId: parseInt(obraContext.id),
+        data: date,
+        valor: "",
+      });
       setPage("");
     }
     setPage("");

@@ -78,6 +78,10 @@ export default function ObrasPage() {
       });
     } else {
       setDisabledButton(false);
+      setFormData({
+        name: "",
+        valor: "",
+      });
       setPage("");
     }
     setPage("");

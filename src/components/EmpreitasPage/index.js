@@ -78,19 +78,25 @@ export default function EmpreitasPage() {
     console.log(formData);
     const promise = await api.empreitasPost(token, formData);
     if (promise === 401) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este nome de obra não está cadastrado!",
       });
     } else if (promise === 422) {
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Ops...",
         text: "Este formato esta errado!",
       });
     } else {
       setDisabledButton(false);
+      setFormData({
+        obraId: parseInt(obraContext.id),
+        funcionarioId: 1,
+        valor: "",
+        description: "",
+      });
       setPage("");
     }
     setPage("");
