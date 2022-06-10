@@ -62,7 +62,12 @@ export default function DespesasPage() {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
   }
+  function formatarValor(valor) {
+    const atual = valor / 100;
+    const f2 = atual.toLocaleString("pt-br", { minimumFractionDigits: 2 });
 
+    return f2;
+  }
   async function handleDespesa(e) {
     e.preventDefault();
     setDisabledButton(true);
@@ -96,6 +101,9 @@ export default function DespesasPage() {
     setPage("");
   }
   despesas.map((n) => (total += n.valor));
+  despesas.sort(function (a, b) {
+    return a.id - b.id;
+  });
   return (
     <Container>
       {!page ? (
@@ -121,7 +129,7 @@ export default function DespesasPage() {
                     <span>{n.description}</span>
                   </Description>
 
-                  <Valor color={"saida"}>{(n.valor / 100).toFixed(2)}</Valor>
+                  <Valor color={"saida"}>{formatarValor(n.valor)}</Valor>
                 </Linha>
               ))
             )}
@@ -130,7 +138,7 @@ export default function DespesasPage() {
             ) : (
               <Saldo color={"saida"}>
                 <span>Total</span>
-                <div className="value">{(total / 100).toFixed(2)}</div>
+                <div className="value">{formatarValor(total)}</div>
               </Saldo>
             )}
           </Extrat>

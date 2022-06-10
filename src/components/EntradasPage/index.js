@@ -92,7 +92,16 @@ export default function EntradasPage() {
     }
     setPage("");
   }
+  function formatarValor(valor) {
+    const atual = valor / 100;
+    const f2 = atual.toLocaleString("pt-br", { minimumFractionDigits: 2 });
+
+    return f2;
+  }
   entradas.map((n) => (total += n.valor));
+  entradas.sort(function (a, b) {
+    return a.id - b.id;
+  });
   return (
     <Container>
       {!page ? (
@@ -118,7 +127,7 @@ export default function EntradasPage() {
                     <p className="data">{n.data}</p>
                   </Description>
 
-                  <Valor color={"entrada"}>{(n.valor / 100).toFixed(2)}</Valor>
+                  <Valor color={"entrada"}>{formatarValor(n.valor)}</Valor>
                 </Linha>
               ))
             )}
@@ -127,7 +136,7 @@ export default function EntradasPage() {
             ) : (
               <Saldo color={total >= 0 ? "entrada" : "saida"}>
                 <span>Total</span>
-                <div className="value">{(total / 100).toFixed(2)}</div>
+                <div className="value">{formatarValor(total)}</div>
               </Saldo>
             )}
           </Extrat>

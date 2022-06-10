@@ -78,6 +78,9 @@ export default function FuncionariosPage() {
 
     setPage("");
   }
+  funcionarios.sort(function (a, b) {
+    return a.nome - b.nome;
+  });
   return (
     <Container>
       {!page ? (

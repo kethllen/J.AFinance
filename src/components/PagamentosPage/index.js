@@ -120,7 +120,19 @@ export default function PagamentosPage() {
     setValor("");
     setPage("");
   }
+  function formatarValor(valor) {
+    const atual = valor / 100;
+    const f2 = atual.toLocaleString("pt-br", { minimumFractionDigits: 2 });
+
+    return f2;
+  }
   pagamentos?.map((n) => (total += n.valorTotal));
+  pagamentos.sort(function (a, b) {
+    return a.id - b.id;
+  });
+  funcionarios.sort(function (a, b) {
+    return a.nome - b.nome;
+  });
   return (
     <Container>
       {!page ? (
@@ -145,9 +157,7 @@ export default function PagamentosPage() {
                     <FaUserAlt size={25} color={"#ffffff"} />
                     <span>{n.funcionario.nome}</span>
                   </Description>
-                  <Valor color={"saida"}>
-                    {(n.valorTotal / 100).toFixed(2)}
-                  </Valor>
+                  <Valor color={"saida"}>{formatarValor(n.valorTotal)}</Valor>
                 </Linha>
               ))
             )}
@@ -156,7 +166,7 @@ export default function PagamentosPage() {
             ) : (
               <Saldo color={"saida"}>
                 <span>Total</span>
-                <div className="value">{(total / 100).toFixed(2)}</div>
+                <div className="value">{formatarValor(total)}</div>
               </Saldo>
             )}
           </Extrat>

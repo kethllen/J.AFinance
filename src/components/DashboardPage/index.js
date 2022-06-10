@@ -76,6 +76,13 @@ export default function DashboardPage() {
   let renderLabel = function (entry) {
     return entry.name;
   };
+
+  function formatarValor(valor) {
+    const atual = valor / 100;
+    const f2 = atual.toLocaleString("pt-br", { minimumFractionDigits: 2 });
+
+    return f2;
+  }
   return (
     <Container>
       <Title>
@@ -119,9 +126,7 @@ export default function DashboardPage() {
               <FaBalanceScaleLeft size={30} color={"#000000"} />
               <span>Valor em Caixa</span>
             </Description>
-            <Valor font-weight={"entrada"}>
-              {(valorEmCaixa / 100).toFixed(2)}
-            </Valor>
+            <Valor font-weight={"entrada"}>{formatarValor(valorEmCaixa)}</Valor>
           </Linha>
           <Linha>
             <Description>
@@ -129,7 +134,7 @@ export default function DashboardPage() {
               <span>Entradas</span>
             </Description>
             <Valor font-weight={"entrada"}>
-              {(valorEntradas / 100).toFixed(2)}
+              {formatarValor(valorEntradas)}
             </Valor>
           </Linha>
           <Linha>
@@ -138,7 +143,7 @@ export default function DashboardPage() {
               <span>Despesas</span>
             </Description>
             <Valor font-weight={"entrada"}>
-              {(valorDespesas / 100).toFixed(2)}
+              {formatarValor(valorDespesas)}
             </Valor>
           </Linha>
           <Linha>
@@ -147,7 +152,7 @@ export default function DashboardPage() {
               <span>Materiais</span>
             </Description>
             <Valor font-weight={"entrada"}>
-              {(valorMateriais / 100).toFixed(2)}
+              {formatarValor(valorMateriais)}
             </Valor>
           </Linha>
           <Linha>
@@ -156,7 +161,7 @@ export default function DashboardPage() {
               <span>Mão-de-Obra</span>
             </Description>
             <Valor font-weight={"entrada"}>
-              {(valorMaoDeObra / 100).toFixed(2)}
+              {formatarValor(valorMaoDeObra)}
             </Valor>
           </Linha>
           <Linha>
@@ -164,7 +169,7 @@ export default function DashboardPage() {
               <GiMoneyStack size={30} color={"#008000"} />
               <span>Lucro Atual</span>
             </Description>
-            <Valor font-weight={"entrada"}>{(lucro / 100).toFixed(2)}</Valor>
+            <Valor font-weight={"entrada"}>{formatarValor(lucro)}</Valor>
           </Linha>
         </Empreita>
       </Extrat>

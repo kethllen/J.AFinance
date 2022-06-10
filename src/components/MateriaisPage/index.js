@@ -105,6 +105,13 @@ export default function MateriaisPage() {
     setPage("");
   }
   materiais.map((n) => (total += n.valor));
+
+  function formatarValor(valor) {
+    const atual = valor / 100;
+    const f2 = atual.toLocaleString("pt-br", { minimumFractionDigits: 2 });
+
+    return f2;
+  }
   return (
     <Container>
       {!page ? (
@@ -130,7 +137,7 @@ export default function MateriaisPage() {
                     <span>{n.description}</span>
                   </Description>
 
-                  <Valor color={"saida"}>{(n.valor / 100).toFixed(2)}</Valor>
+                  <Valor color={"saida"}>{formatarValor(n.valor)}</Valor>
                 </Linha>
               ))
             )}
@@ -139,7 +146,7 @@ export default function MateriaisPage() {
             ) : (
               <Saldo color={"saida"}>
                 <span>Total</span>
-                <div className="value">{(total / 100).toFixed(2)}</div>
+                <div className="value">{formatarValor(total)}</div>
               </Saldo>
             )}
           </Extrat>

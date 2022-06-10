@@ -71,6 +71,9 @@ export default function FuncionarioDataPage() {
     }
     setPage("");
   }
+  funcionario.sort(function (a, b) {
+    return a.name - b.name;
+  });
   return (
     <Container>
       <Title>
@@ -182,63 +185,6 @@ export default function FuncionarioDataPage() {
           </div>
         </Incluir>
       </Extrat>
-      {/*        
-          <Title>
-            <h1>Editar Funcionario</h1>
-            <RiArrowGoBackFill
-              size={25}
-              color={"#ffffff"}
-              onClick={() => setPage("")}
-            />
-          </Title>
-          <form onSubmit={handleFuncionario}>
-            <Input>
-              <input
-                type="text"
-                value={formData.nome}
-                name="nome"
-                onChange={(e) => handleInput(e)}
-                placeholder="Nome"
-              />
-              <input
-                type="text"
-                value={formData.conta}
-                name="conta"
-                onChange={(e) => handleInput(e)}
-                placeholder="Conta"
-              />
-              <input
-                type="text"
-                value={formData.agencia}
-                name="agencia"
-                onChange={(e) => handleInput(e)}
-                placeholder="Agencia"
-              />
-              <input
-                type="text"
-                value={formData.operacao}
-                name="operacao"
-                onChange={(e) => handleInput(e)}
-                placeholder="Operação"
-              />
-              <input
-                type="text"
-                value={formData.pix}
-                name="pix"
-                onChange={(e) => handleInput(e)}
-                placeholder="Chave pix"
-              />
-              <button type="submit" disabled={disabledButton}>
-                {disabledButton ? (
-                  <img width={50} height={50} src={loadImage} alt="Loading" />
-                ) : (
-                  "Salvar Funcionario"
-                )}
-              </button>
-            </Input>
-          </form>
-        </>
-      )} */}
     </Container>
   );
 }

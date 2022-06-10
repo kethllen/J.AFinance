@@ -54,36 +54,7 @@ const Linha = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const Extrat = styled.div`
-  overflow: scroll;
-  box-sizing: border-box;
-  position: relative;
-  margin-top: 20px;
-  height: 70vh;
-  width: 326px;
-  padding: 13px;
-  padding-bottom: 40px;
-  border-radius: 5px;
-  background-color: #7db9df;
-  display: flex;
-  flex-direction: column;
-  h1 {
-    position: absolute;
-    top: 180px;
-    left: 68px;
-    height: 100%;
-    color: #868686;
-    font-family: "Raleway", sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 23px;
-    letter-spacing: 0em;
-    text-align: center;
-    align-self: center;
-    justify-self: center;
-  }
-`;
+
 const Incluir = styled.div`
   margin-top: 10px;
   display: flex;
@@ -152,19 +123,47 @@ const Input = styled.div`
     text-align: center;
   }
 `;
+const Extrat = styled.div`
+  overflow: scroll;
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 20px;
+  height: 70vh;
+  width: 326px;
+  padding: 13px;
+  padding-bottom: 40px;
+  border-radius: 5px;
+  background-color: #7db9df;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    position: absolute;
+    top: 180px;
+    left: 68px;
+    height: 100%;
+    color: #868686;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+  }
+`;
 const Saldo = styled.div`
-  width: 303px;
   font-family: "Raleway", sans-serif;
   font-size: 17px;
   font-style: normal;
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  bottom: 12px;
+  margin-top: 20px;
   .value {
-    font-weight: 700;
+    font-weight: 500;
     text-align: right;
-    color: ${(props) => (props.color === "saida" ? "#c70000" : "#008000")};
+    color: ${(props) => (props.color === "saida" ? "#c70000" : "#03AC00")};
   }
   span {
     font-weight: 700;

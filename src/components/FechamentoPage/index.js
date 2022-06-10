@@ -50,7 +50,12 @@ export default function FechamentosPage() {
     setFechamentos(promise);
   }, [page]);
   if (token === "") return;
+  function formatarValor(valor) {
+    const atual = valor / 100;
+    const f2 = atual.toLocaleString("pt-br", { minimumFractionDigits: 2 });
 
+    return f2;
+  }
   function handleInput(e) {
     if (e.target.name == "valor") {
       const valor = parseInt(e.target.value.replace(/\D/g, ""));
@@ -109,6 +114,9 @@ export default function FechamentosPage() {
     setPage("");
   }
   fechamentos.map((n) => (total += n.valor));
+  fechamentos.sort(function (a, b) {
+    return a.id - b.id;
+  });
   return (
     <Container>
       {!page ? (
@@ -137,7 +145,7 @@ export default function FechamentosPage() {
                     <p className="data">{n.data}</p>
                   </Description>
 
-                  <Valor color={"saida"}>{(n.valor / 100).toFixed(2)}</Valor>
+                  <Valor color={"saida"}>{formatarValor(n.valor)}</Valor>
                 </Linha>
               ))
             )}
@@ -146,7 +154,7 @@ export default function FechamentosPage() {
             ) : (
               <Saldo color={"saida"}>
                 <span>Total</span>
-                <div className="value">{(total / 100).toFixed(2)}</div>
+                <div className="value">{formatarValor(total)}</div>
               </Saldo>
             )}
           </Extrat>
@@ -162,8 +170,3 @@ export default function FechamentosPage() {
     </Container>
   );
 }
-// .then((result) => {
-//   if (result.value) {
-//     setPage("");
-//   }
-// });

@@ -51,7 +51,12 @@ export default function EmpreitasPage() {
   });
 
   const navigate = useNavigate();
+  function formatarValor(valor) {
+    const atual = valor / 100;
+    const f2 = atual.toLocaleString("pt-br", { minimumFractionDigits: 2 });
 
+    return f2;
+  }
   useEffect(async () => {
     const promise = await api.empreitasGet(token, obraContext.id);
     setEmpreitas(promise.slice(1, promise.length));
@@ -129,7 +134,7 @@ export default function EmpreitasPage() {
                       <span>{n.description}</span>
                     </Description>
                     <Valor font-weight={"entrada"}>
-                      {(n.valor / 100).toFixed(2)}
+                      {formatarValor(n.valor)}
                     </Valor>
                   </Linha>
                   <Linha>
@@ -143,7 +148,7 @@ export default function EmpreitasPage() {
                       <h3>Valor Pago: </h3>
                     </Description>
                     <Valor font-weight={"entrada"}>
-                      {(n.valorPago / 100).toFixed(2)}
+                      {formatarValor(n.valorPago)}
                     </Valor>
                   </Linha>
                 </Empreita>

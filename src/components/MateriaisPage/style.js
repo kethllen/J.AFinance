@@ -54,36 +54,7 @@ const Linha = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const Extrat = styled.div`
-  overflow: scroll;
-  box-sizing: border-box;
-  position: relative;
-  margin-top: 20px;
-  height: 70vh;
-  width: 326px;
-  padding: 13px;
-  padding-bottom: 40px;
-  border-radius: 5px;
-  background-color: #7db9df;
-  display: flex;
-  flex-direction: column;
-  h1 {
-    position: absolute;
-    top: 180px;
-    left: 68px;
-    height: 100%;
-    color: #868686;
-    font-family: "Raleway", sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 23px;
-    letter-spacing: 0em;
-    text-align: center;
-    align-self: center;
-    justify-self: center;
-  }
-`;
+
 const Incluir = styled.div`
   margin-top: 10px;
   display: flex;
@@ -150,6 +121,37 @@ const Input = styled.div`
     font-weight: 700;
     letter-spacing: 0em;
     text-align: center;
+  }
+`;
+
+const Extrat = styled.div`
+  overflow: scroll;
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 20px;
+  height: 70vh;
+  width: 326px;
+  padding: 13px;
+  padding-bottom: 40px;
+  border-radius: 5px;
+  background-color: #7db9df;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    position: absolute;
+    top: 180px;
+    left: 68px;
+    height: 100%;
+    color: #868686;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
   }
 `;
 const Saldo = styled.div`
