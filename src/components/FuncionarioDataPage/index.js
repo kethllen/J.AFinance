@@ -71,9 +71,7 @@ export default function FuncionarioDataPage() {
     }
     setPage("");
   }
-  funcionario.sort(function (a, b) {
-    return a.name - b.name;
-  });
+
   return (
     <Container>
       <Title>
