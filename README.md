@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# J.AFinance
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é autoral e foi desenvolvido, para solucionar a o problema que pequenos empresários tem para fazer o controle financeiro de suas construtoras
 
-## Available Scripts
+<img src="src/assets/j-aFinance-usage.gif" />
 
-In the project directory, you can run:
+Você pode acessar por aqui https://j-afinance.vercel.app/
 
-### `npm start`
+## Sobre
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Nesta Aplicação, você concegue fazer de A-Z , desde monitorar seus gastos categorizados por materiais, despezas, e mão de obra. Como inserir empreitas, inserir seus fechamentos semanais, junto com os pagamentos, e os dados dos seus funcionarios. Alem de vizualizar tudo isso em um gráfico. Este projeto ainda esta em andamentos, os proximos passos será alem de inserir e vizuzalizar tudo, poder excluir e fazer update, para assim a plicação poder ficar completa.Ate agora as features que estao no ar são:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Cadastro
+- login
+- inserir e vizualizar as suas obras
+- inserir , vizualizar e atualizar os dados dos seus funcionarios
+- inserir e vizualizar as suas entradas de cada obra
+- inserir e vizualizar as suas despezas de cada obra
+- inserir e vizualizar os gastos com materiais
+- inserir e vizualizar os seus fechamentos de gastos com mao de obra(semanal ou quinzenal)
+- inserir e vizualizar os seus pagamentos realizados em cada fechamentos
+- vizualizar o dashboard de cada obra
 
-### `npm test`
+## Technologies
+As ferramentas e frameworks utilizados para a construção desse projeto:<br>
+<p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  <img style='margin: 5px;' src='https://img.shields.io/badge/styled-components%20-%2320232a.svg?&style=for-the-badge&color=b8679e&logo=styled-components&logoColor=%3a3a3a'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/axios%20-%2320232a.svg?&style=for-the-badge&color=informational'>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/react-app%20-%2320232a.svg?&style=for-the-badge&color=60ddf9&logo=react&logoColor=%2361DAFB"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/react_route%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/nodejs%20-%2320232a.svg?&style=for-the-badge&color=blue&logo=javascript&logoColor=%2361DAFB%27'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/express%20-%2320232a.svg?&style=for-the-badge&color=green&logo=express&logoColor=%2361DAFB%27'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/sweetalert2%20-%2320232a.svg?&style=for-the-badge&color=important&logo=sweetalert2&logoColor=%2361DAFB%27'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E'>
+   <img style='margin: 5px;' src='https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white'>
+</p>
 
-### `npm run build`
+## How to run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone este repositório
+2. Clone o repositório do back-end  https://github.com/kethllen/J.AFinance-api
+3. FSiga as instruções para executar o back-end  https://github.com/kethllen/J.AFinance-api
+4. Instale as dependencias do front-end
+```bash
+npm i
+```
+5.Crie um arquivo de variáveis de ambiente na raiz do projeto (.env) e configure uma variável com o nome 'REACT_APP_BACK_URL' que contenha a url onde o back-end estará rodando, Exemplo:
+```bash
+http:localhost:5000/
+```
+5. Execute o front-end:
+```bash
+npm start
+```
+6. Por fim, acesse http://localhost:3000 em seu navegador favorito.
